@@ -43,7 +43,7 @@ This project uses a Muse headband to read EEG signals and send them to a Raspber
 
 ### Mind Monitor App Configuration
 
-1. Install the Mind Monitor app on your smartphone.
+1. Install the [Mind Monitor](https://mind-monitor.com/) app on your smartphone.
 2. Connect the Muse headband to your smartphone via Bluetooth.
 3. Configure the app to send EEG data to your local computer using the OSC protocol.
 
