@@ -5,7 +5,6 @@ from datetime import datetime
 from scipy.fftpack import rfft,rfftfreq 
 import numpy as np
 import movement as m
-import time
 import RPi.GPIO as GPIO
 import distance as d
 
@@ -61,13 +60,13 @@ def dataGyro(none: float,accForBack: float,accLeftRight: float,accZ: float):
 #method called by dispatcher to receive eeg data.
 def data(eeg1: float,eeg2: float,eeg3: float,eeg4: float,eeg5: float,eeg6: float):
     global boolean
-    plotData(eeg2,eeg3,eeg4,eeg6)
+    action(eeg2,eeg3,eeg4,eeg6)
     if(boolean == True):
         boolean = False
         stoppingTime()
 
 #writes 550 frames of eeg to a .csv file.
-def plotData(eegTP9,eegAF7,eegAF8,eegTP10):
+def action(eegTP9,eegAF7,eegAF8,eegTP10):
     global turn_drive_toggle,left_right_toggle,limitDrive,forward_Back,limiter
     global eegTP9Array,eegAF7Array,timeArray,eegAF8Array,eegTP10Array,filename,count
     stop = False
