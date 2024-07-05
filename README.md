@@ -102,7 +102,7 @@ Connect the ultrasonic sensors to the Raspberry Pi GPIO:
 
 ### EEG Data Processing
 
-The Muse headband measures EEG signals, which are transmitted to the Raspberry Pi via the Mind Monitor app and the OSC protocol. The `main.py` script processes these signals to detect specific patterns indicating jaw clenching and head orientation.
+The Muse headband measures EEG signals, which are transmitted to the Raspberry Pi via the Mind Monitor app and the OSC protocol. The `main.py` script processes these signals to detect specific patterns indicating jaw clenching, blinking and head orientation.
 
 ### Motor Control
 
