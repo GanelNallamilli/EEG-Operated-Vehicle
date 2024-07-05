@@ -90,7 +90,7 @@ Connect the ultrasonic sensors to the Raspberry Pi GPIO:
 1. Ensure the Muse headband is connected to your smartphone and the Mind Monitor app is configured to send EEG data to your local computer.
 2. Run the `main.py` script on your local computer:
     ```bash
-    python main.py --ip YOUR_LOCAL_IP --port YOUR_PORT
+    python main.py 
     ```
 
 3. The script will run for 90 seconds once started. During this time, you can control the vehicle using the following gestures:
