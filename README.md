@@ -38,7 +38,7 @@ This project uses a Muse headband to read EEG signals and send them to a Raspber
 - Motor driver
 - Ultrasonic sensor
 - Mind Monitor app on a smartphone
-- Local computer for data transfer
+- Local computer for data transfer (Raspberry Pi)
 
 ### Mind Monitor App Configuration
 
