@@ -17,8 +17,7 @@ This project demonstrates controlling a Raspberry Pi (model 4b) vehicle using EE
 8. [Expected Output](#expected-output)
 9. [Future Work](#future-work)
 10. [Troubleshooting](#troubleshooting)
-11. [Contributing](#contributing)
-12. [License](#license)
+11. [License](#license)
 
 ## Introduction
 
@@ -256,10 +255,6 @@ To enhance the functionality and safety of the vehicle, an accelerometer could b
 - Verify the Mind Monitor app is correctly configured to send data to your local computer (raspberry pi).
 - Check the pin connections for motors and ultrasonic sensors on the Raspberry Pi.
 - Ensure the local IP address and port in `main.py` are correctly set.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
 ## License
 
