@@ -1,6 +1,6 @@
 # EEG-Operated-Vehicle
 
-This project demonstrates controlling a Raspberry Pi (model 4b) vehicle using EEG data from a Muse headband. The vehicle responds to jaw clenching and head orientation, enabling it to move forward, backward, and turn left or right.
+This project demonstrates controlling a Raspberry Pi (model 4b) vehicle using EEG data from a Muse headband. The vehicle responds to jaw clenching, blinking and head orientation, enabling it to move forward, backwards, and turn left or right.
 
 ## Table of Contents
 
