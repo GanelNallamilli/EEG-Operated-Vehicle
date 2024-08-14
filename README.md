@@ -255,7 +255,3 @@ To enhance the functionality and safety of the vehicle, an accelerometer could b
 - Verify the Mind Monitor app is correctly configured to send data to your local computer (raspberry pi).
 - Check the pin connections for motors and ultrasonic sensors on the Raspberry Pi.
 - Ensure the local IP address and port in `main.py` are correctly set.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
