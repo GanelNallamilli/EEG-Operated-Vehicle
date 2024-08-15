@@ -1,6 +1,9 @@
 # EEG-Operated-Vehicle
 
-This project demonstrates controlling a Raspberry Pi (model 4b) vehicle using EEG data from a Muse headband. The vehicle responds to jaw clenching and head orientation, enabling it to move forward, backward, and turn left or right.
+This project demonstrates controlling a Raspberry Pi (model 4b) vehicle using EEG data from a Muse headband. The vehicle responds to jaw clenching, blinking and head orientation, enabling it to move forward, backwards, and turn left or right.
+
+## Project Demonstration
+[![EEG Operated Vehicle](http://img.youtube.com/vi/Xhc5vNDa3RU/0.jpg)](http://www.youtube.com/watch?v=Xhc5vNDa3RU "EEG Operated Vehicle")
 
 ## Table of Contents
 
@@ -14,8 +17,7 @@ This project demonstrates controlling a Raspberry Pi (model 4b) vehicle using EE
 8. [Expected Output](#expected-output)
 9. [Future Work](#future-work)
 10. [Troubleshooting](#troubleshooting)
-11. [Contributing](#contributing)
-12. [License](#license)
+11. [License](#license)
 
 ## Introduction
 
@@ -36,11 +38,11 @@ This project uses a Muse headband to read EEG signals and send them to a Raspber
 - Motor driver
 - Ultrasonic sensor
 - Mind Monitor app on a smartphone
-- Local computer for data transfer
+- Local computer for data transfer (Raspberry Pi)
 
 ### Mind Monitor App Configuration
 
-1. Install the Mind Monitor app on your smartphone.
+1. Install the [Mind Monitor](https://mind-monitor.com/) app on your smartphone.
 2. Connect the Muse headband to your smartphone via Bluetooth.
 3. Configure the app to send EEG data to your local computer using the OSC protocol.
 
@@ -88,7 +90,7 @@ Connect the ultrasonic sensors to the Raspberry Pi GPIO:
 1. Ensure the Muse headband is connected to your smartphone and the Mind Monitor app is configured to send EEG data to your local computer.
 2. Run the `main.py` script on your local computer:
     ```bash
-    python main.py --ip YOUR_LOCAL_IP --port YOUR_PORT
+    python main.py 
     ```
 
 3. The script will run for 90 seconds once started. During this time, you can control the vehicle using the following gestures:
@@ -100,7 +102,7 @@ Connect the ultrasonic sensors to the Raspberry Pi GPIO:
 
 ### EEG Data Processing
 
-The Muse headband measures EEG signals, which are transmitted to the Raspberry Pi via the Mind Monitor app and the OSC protocol. The `main.py` script processes these signals to detect specific patterns indicating jaw clenching and head orientation.
+The Muse headband measures EEG signals, which are transmitted to the Raspberry Pi via the Mind Monitor app and the OSC protocol. The `main.py` script processes these signals to detect specific patterns indicating jaw clenching, blinking and head orientation.
 
 ### Motor Control
 
@@ -253,11 +255,3 @@ To enhance the functionality and safety of the vehicle, an accelerometer could b
 - Verify the Mind Monitor app is correctly configured to send data to your local computer (raspberry pi).
 - Check the pin connections for motors and ultrasonic sensors on the Raspberry Pi.
 - Ensure the local IP address and port in `main.py` are correctly set.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and create a pull request with your changes.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
