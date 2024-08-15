@@ -1,78 +1,42 @@
-#Libraries
 import RPi.GPIO as GPIO
 import time
- 
-#GPIO Mode (BOARD / BCM)
- 
-def distanceFront():
+
+def measure_distance(trigger_pin, echo_pin):
     GPIO.setmode(GPIO.BCM)
- 
-    #set GPIO Pins
-    GPIO_TRIGGER = 4
-    GPIO_ECHO = 17
-     
-    #set GPIO direction (IN / OUT)
-    GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-    GPIO.setup(GPIO_ECHO, GPIO.IN)
-    # set Trigger to HIGH
-    GPIO.output(GPIO_TRIGGER, True)
- 
-    # set Trigger after 0.01ms to LOW
+    
+    # Set GPIO direction (IN / OUT)
+    GPIO.setup(trigger_pin, GPIO.OUT)
+    GPIO.setup(echo_pin, GPIO.IN)
+    
+    # Set Trigger to HIGH
+    GPIO.output(trigger_pin, True)
+    
+    # Set Trigger after 0.01ms to LOW
     time.sleep(0.00001)
-    GPIO.output(GPIO_TRIGGER, False)
- 
+    GPIO.output(trigger_pin, False)
+    
     StartTime = time.time()
     StopTime = time.time()
- 
-    # save StartTime
-    while GPIO.input(GPIO_ECHO) == 0:
+    
+    # Save StartTime
+    while GPIO.input(echo_pin) == 0:
         StartTime = time.time()
- 
-    # save time of arrival
-    while GPIO.input(GPIO_ECHO) == 1:
+    
+    # Save time of arrival
+    while GPIO.input(echo_pin) == 1:
         StopTime = time.time()
- 
-    # time difference between start and arrival
+    
+    # Time difference between start and arrival
     TimeElapsed = StopTime - StartTime
-    # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
+    # Multiply with the sonic speed (34300 cm/s) and divide by 2 (there and back)
     distance = (TimeElapsed * 34300) / 2
     return distance
 
+def distanceFront():
+    return measure_distance(trigger_pin=4, echo_pin=17)
+
 def distanceBack():
-    GPIO.setmode(GPIO.BCM)
- 
-    #set GPIO Pins
-    GPIO_TRIGGER = 3
-    GPIO_ECHO = 18
-     
-    #set GPIO direction (IN / OUT)
-    GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-    GPIO.setup(GPIO_ECHO, GPIO.IN)
-    # set Trigger to HIGH
-    GPIO.output(GPIO_TRIGGER, True)
- 
-    # set Trigger after 0.01ms to LOW
-    time.sleep(0.00001)
-    GPIO.output(GPIO_TRIGGER, False)
- 
-    StartTime = time.time()
-    StopTime = time.time()
- 
-    # save StartTime
-    while GPIO.input(GPIO_ECHO) == 0:
-        StartTime = time.time()
- 
-    # save time of arrival
-    while GPIO.input(GPIO_ECHO) == 1:
-        StopTime = time.time()
- 
-    # time difference between start and arrival
-    TimeElapsed = StopTime - StartTime
-    # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
-    distance = (TimeElapsed * 34300) / 2
-    return distance
+    return measure_distance(trigger_pin=3, echo_pin=18)
  
 distFront = distanceFront()
 distBack= distanceBack()

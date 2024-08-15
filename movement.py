@@ -1,84 +1,57 @@
-
 import time
 import RPi.GPIO as GPIO
 
-
-
-
-
-mode=GPIO.getmode()
-
-GPIO.cleanup()
-
-ForwardLeft=20
-ForwardRight=26
-BackwardLeft=16
-BackwardRight=19
-sleeptime=1
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(ForwardLeft, GPIO.OUT)
-GPIO.setup(BackwardLeft, GPIO.OUT)
-GPIO.setup(ForwardRight, GPIO.OUT)
-GPIO.setup(BackwardRight, GPIO.OUT)
-
-def run():
-    global ForwardLeft,BackwardLeft,ForwardRight,BackwardRight
-    mode=GPIO.getmode()
-    GPIO.setmode(GPIO.BCM)
-    GPIO.cleanup()
-
-    ForwardLeft=20
-    ForwardRight=26
-    BackwardLeft=16
-    BackwardRight=19
-    GPIO.setup(ForwardLeft, GPIO.OUT)
-    GPIO.setup(BackwardLeft, GPIO.OUT)
-    GPIO.setup(ForwardRight, GPIO.OUT)
-    GPIO.setup(BackwardRight, GPIO.OUT)
-
-def forward(x):
-    global ForwardLeft,BackwardLeft,ForwardRight,BackwardRight,count
-    GPIO.output(ForwardRight, GPIO.HIGH)
-    GPIO.output(ForwardLeft, GPIO.HIGH)
-    time.sleep(x)
-    GPIO.output(ForwardRight, GPIO.LOW)
-    GPIO.output(ForwardLeft, GPIO.LOW)
-
-
-def reverse(x):
-    global ForwardLeft,BackwardLeft,ForwardRight,BackwardRight,count
-    GPIO.output(BackwardLeft, GPIO.HIGH)
-    GPIO.output(BackwardRight, GPIO.HIGH)
-    print("Moving Backward")
-    time.sleep(x)
-    GPIO.output(BackwardLeft, GPIO.LOW)
-    GPIO.output(BackwardRight, GPIO.LOW)
-    
-def left(x):
-    global ForwardLeft,BackwardLeft,ForwardRight,BackwardRight
-    GPIO.output(ForwardRight, GPIO.HIGH)
-    GPIO.output(BackwardLeft, GPIO.LOW)
-    print("Turning Left")
-    time.sleep(x)
-    GPIO.output(BackwardLeft, GPIO.LOW)
-    GPIO.output(ForwardRight, GPIO.LOW)
-
-def right(x):
-    global ForwardLeft,BackwardLeft,ForwardRight,BackwardRight
-    GPIO.output(ForwardLeft, GPIO.HIGH)
-    GPIO.output(BackwardRight, GPIO.LOW)
-    print("Turning right")
-    time.sleep(x)
-    GPIO.output(ForwardLeft, GPIO.LOW)
-    GPIO.output(BackwardRight, GPIO.LOW)
-
-# GPIO.output(ForwardRight, GPIO.LOW)
-# GPIO.output(ForwardLeft, GPIO.LOW)
-# GPIO.output(ForwardLeft, GPIO.LOW)
-# GPIO.output(BackwardRight, GPIO.LOW)
-# forwardNoSense(3)
-
-
+class MotorControl:
+    def __init__(self, forward_left, backward_left, forward_right, backward_right):
+        self.forward_left = forward_left
+        self.backward_left = backward_left
+        self.forward_right = forward_right
+        self.backward_right = backward_right
         
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.forward_left, GPIO.OUT)
+        GPIO.setup(self.backward_left, GPIO.OUT)
+        GPIO.setup(self.forward_right, GPIO.OUT)
+        GPIO.setup(self.backward_right, GPIO.OUT)
+
+    def forward(self, duration):
+        GPIO.output(self.forward_right, GPIO.HIGH)
+        GPIO.output(self.forward_left, GPIO.HIGH)
+        time.sleep(duration)
+        GPIO.output(self.forward_right, GPIO.LOW)
+        GPIO.output(self.forward_left, GPIO.LOW)
+
+    def reverse(self, duration):
+        GPIO.output(self.backward_left, GPIO.HIGH)
+        GPIO.output(self.backward_right, GPIO.HIGH)
+        print("Moving Backward")
+        time.sleep(duration)
+        GPIO.output(self.backward_left, GPIO.LOW)
+        GPIO.output(self.backward_right, GPIO.LOW)
     
-        
+    def left(self, duration):
+        GPIO.output(self.forward_right, GPIO.HIGH)
+        GPIO.output(self.backward_left, GPIO.LOW)
+        print("Turning Left")
+        time.sleep(duration)
+        GPIO.output(self.forward_right, GPIO.LOW)
+    
+    def right(self, duration):
+        GPIO.output(self.forward_left, GPIO.HIGH)
+        GPIO.output(self.backward_right, GPIO.LOW)
+        print("Turning right")
+        time.sleep(duration)
+        GPIO.output(self.forward_left, GPIO.LOW)
+
+    def cleanup(self):
+        GPIO.cleanup()
+
+if __name__ == "__main__":
+    motor = MotorControl(forward_left=20, backward_left=16, forward_right=26, backward_right=19)
+    try:
+        motor.forward(1)
+        motor.reverse(1)
+        motor.left(1)
+        motor.right(1)
+    finally:
+        motor.cleanup()
